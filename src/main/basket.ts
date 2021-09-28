@@ -13,22 +13,26 @@ export class Basket {
     this.basketItems.push(new BasketItem(itemName, price, units));
   }
 
+  private formatCurrency(value: number): string {
+    return new Intl.NumberFormat("en-GB", {
+      style: "currency",
+      currency: "GBP",
+    }).format(value);
+  }
+
   display(): string {
     let ret = `Creation date: ${this.creationDate
       .toISOString()
       .substring(0, 10)}\n`;
-    let total = 0;
+    let subtotal = 0;
 
     this.basketItems.forEach((basketItem) => {
-      ret += basketItem.name + "\n";
-      total += basketItem.units * basketItem.price;
+      let total = this.formatCurrency(basketItem.units * basketItem.price);
+      ret += `${basketItem.units} x ${basketItem.name} // ${basketItem.units} x ${this.formatCurrency(basketItem.price)} = ${total}\n`;
+      subtotal += basketItem.units * basketItem.price;
     });
-    ret +=
-      "Total: " +
-      new Intl.NumberFormat("en-GB", {
-        style: "currency",
-        currency: "GBP",
-      }).format(total);
+
+    ret += "Total: " + this.formatCurrency(subtotal);
     return ret;
   }
 }
