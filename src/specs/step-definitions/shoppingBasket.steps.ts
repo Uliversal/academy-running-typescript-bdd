@@ -15,11 +15,11 @@ defineFeature(feature, (test) => {
     given(
       /^I add 2 units of "(.*)" to my shopping basket$/,
       (first_item: string) => {
-        basket.add(first_item, 2);
+        basket.add(first_item, 5, 2);
       }
     );
     and(/^I add 5 units of "(.*)"$/, (second_item: string) => {
-      basket.add(second_item, 5);
+      basket.add(second_item, 7, 5);
     });
     when("I check the content of my shopping basket", () => {
       display = basket.display();
