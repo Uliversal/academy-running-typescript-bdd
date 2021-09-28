@@ -1,4 +1,4 @@
-Feature: Shopping Baskett
+Feature: Shopping Basket
 
   Scenario: Add items to shopping basket
     Given I add 2 units of "The Hobbit" to my shopping basket
