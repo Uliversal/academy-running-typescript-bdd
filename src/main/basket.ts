@@ -2,9 +2,11 @@ import { BasketItem } from "./basketItem";
 
 export class Basket {
   private basketItems: BasketItem[];
+  private creationDate: Date;
 
   constructor() {
     this.basketItems = [];
+    this.creationDate = new Date();
   }
 
   add(itemName: string, units: number): void {
@@ -12,7 +14,7 @@ export class Basket {
   }
 
   display(): string {
-    let ret = "";
+    let ret = `${this.creationDate.toISOString().substring(0,10)}\n`;
     this.basketItems.forEach((basketItem) => {
       ret += basketItem.name;
     });
